@@ -1,0 +1,1 @@
+module.exports = (element) => { return parseFloat(getComputedStyle(element).fontSize) / parseFloat(getComputedStyle(document.documentElement).fontSize) }
