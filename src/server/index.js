@@ -30,14 +30,24 @@ app.listen(config.serverPort, () => {
     puppeteerInstance.instance.then(instance => {
         console.log('Browser instance initialized.');
     })
-
 })
 
 app.get('/posts', async (req,res) => {
-    
-
     const posts = await getPosts(req.query);
-    
     res.send(posts);
-    
+})
+
+app.on('error', (err) => {
+    console.log('An error occurred while starting the server.');
+    console.log(err);
+})
+
+process.on('uncaughtException', (err) => {
+    console.log('An uncaught exception occurred.');
+    console.log(err);
+})
+
+process.on('unhandledRejection', (err) => {
+    console.log('An unhandled rejection occurred.');
+    console.log(err);
 })
