@@ -1,5 +1,7 @@
 // Rule Base approach (happy cases, based on target website and existing posts and other words)
 
+// Can be replaced with sentiment (https://www.npmjs.com/package/sentiment) for better accuracy
+
 function analyzeSentiment(text) {
     /**
      * (-2-) BAD -- [-2 ~ 2]Neutral -- (2+) GOOD

@@ -69,7 +69,12 @@ async function getPosts(query) {
 
     if(sentiment == 'true') {
         for(let post in posts) {
-            let sentiment = await getPost({url: post.extras?.a ? post.extras.a : url + '/blog/' + post.id, rawText: true, sentiment: true})
+            try {
+                let sentiment = await getPost({url: url + '/blog/' + posts[post].id, rawText: 'true', sentiment: 'true'})
+                posts[post].sentiment = sentiment.sentimentResult;
+            } catch(err) {
+                console.error(err);
+            }
         }
     }
 

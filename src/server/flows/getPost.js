@@ -51,7 +51,6 @@ async function getPost(query) {
         }
     }, rawText)
 
-    console.log(sentiment)
     if(sentiment == 'true') {
         text.sentimentResult = analyzeSentiment(text.raw);
     }
