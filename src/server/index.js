@@ -4,6 +4,7 @@ const config = require('./config.json');
 
 const getPosts = require('./flows/getPosts');
 const puppeteerInstance = require('./services/puppeteer');
+const getPost = require('./flows/getPost');
 
 const app = express();
 
@@ -32,9 +33,14 @@ app.listen(config.serverPort, () => {
     })
 })
 
-app.get('/posts', async (req,res) => {
+app.get('/posts/', async (req,res) => {
     const posts = await getPosts(req.query);
     res.send(posts);
+})
+
+app.get('/post/', async (req,res) => {
+    let post = await getPost(req.query) 
+    res.send(post)
 })
 
 app.on('error', (err) => {

@@ -1,8 +1,9 @@
 // const puppeteer = require('puppeteer');
 const puppeteerInstance = require('../services/puppeteer');
+const getPost = require('./getPost');
 
 async function getPosts(query) {
-    let { url, extras } = query;
+    let { url, extras, sentiment } = query;
     const browser = await puppeteerInstance.instance;
     const page = await browser.newPage();
 
@@ -65,7 +66,13 @@ async function getPosts(query) {
         return postsArray;
     }, extras)
     console.log(posts);
-    
+
+    if(sentiment == 'true') {
+        for(let post in posts) {
+            let sentiment = await getPost({url: post.extras?.a ? post.extras.a : url + '/blog/' + post.id, rawText: true, sentiment: true})
+        }
+    }
+
     return posts;
 }
 
