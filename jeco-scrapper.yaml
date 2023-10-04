@@ -1,0 +1,73 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Sample API
+  description: A simple API with two endpoints
+host: localhost:3000
+schemes:
+  - http
+paths:
+  /posts:
+    get:
+      summary: Get Posts
+      parameters:
+        - name: url
+          in: query
+          description: URL parameter for posts (default https://wsa-test.vercel.app/)
+          type: string
+          default: https://wsa-test.vercel.app/
+        - name: extras
+          in: query
+          description: Any HTML tag, preferably 'a' or 'img'
+          type: string
+        - name: sentiment
+          in: query
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+          examples:
+            application/json: |
+              [
+                {
+                    "id": "title-split-by-lines",
+                    "title": "Text",
+                    "description": "Text",
+                    "extras": {
+                        "htmlTag": ["occurence1", "occurence2"]
+                    },
+                    "sentiment": "N/A | Negative | Neutral | Positive"
+                }
+              ]
+  /post:
+    get:
+      summary: Get Post by ID
+      parameters:
+        - name: url
+          in: query
+          description: URL parameter for post (https://wsa-test.vercel.app/blogs/:post_id_name)
+          type: string
+        - name: sentiment
+          in: query
+          description: Include sentiment analysis
+          type: boolean
+        - name: raw
+          in: query
+          description: Include raw data
+          type: boolean
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+          examples:
+            application/json: |
+              {
+                "category": "Text",
+                "title": "Text",
+                "content": "[\"Paragraph1 + Text\" , \"Paragraph2 + Text\", \"etc\"] | null",
+                "sentiment": "N/A | Negative | Neutral | Positive",
+                "raw": "Text | null"
+              }
