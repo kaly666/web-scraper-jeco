@@ -10,7 +10,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "server": "cd src/server && node index.js"
+    "setup": "npm install && npm install -g http-server",
+    "background": "npm install pm2 -g && pm2 start src/server/index.js --name jeco_api && http-server src/client -p 8080",
+    "server": "cd src/server && node index.js",
+    "client": "http-server src/client -p 8080"
   },
   "author": "",
   "license": "ISC",
