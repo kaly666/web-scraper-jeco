@@ -21,4 +21,5 @@ There are 2 ways to start up the application.
 
 ## Usage
 
-For API endpoints testing feel free to use the swagger file.
+For API endpoints testing feel free to use the swagger file. (jeco-scrapper.yaml)
+To try it out use swagger or upload it at https://editor.swagger.io
